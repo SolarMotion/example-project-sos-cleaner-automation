@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace Business.BALs
 {
     public class BaseBAL
     {
+        public static readonly ILog LOGGER = LogManager.GetLogger("BusinessLogger");
+
     }
 }
