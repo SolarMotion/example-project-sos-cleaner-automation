@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.Extensions.Hosting;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(Web.Startup))]
