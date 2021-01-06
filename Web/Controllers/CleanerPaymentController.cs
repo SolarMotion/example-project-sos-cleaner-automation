@@ -3,34 +3,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using static Web.Helpers.CustomLogging;
+using static Utility.CustomLogging;
+using Business.Models;
+using Business.BALs;
+using Web.Models;
 
 namespace Web.Controllers
 {
     public class CleanerPaymentController : BaseController
     {
+        private readonly CleanerEmailBAL BAL = new CleanerEmailBAL();
+
         public ActionResult Index()
         {
-            LogInfo("Test");
+            LogInfo("Test wednesday");
+            var viewModel = new CleanerPaymentIndexViewModel();
 
-            return View();
+            var response = BAL.Index(new CleanerPaymentIndexRequest());
+
+            if (response.IsSucess)
+            {
+                viewModel.Payments = response.Payments.Select(a => new Models.CleanerPaymentIndexItem()
+                {
+                    CleanerPaymentID = a.CleanerPaymentID,
+                    CreateDate = a.CreateDate,
+                    IsPaidFlag = a.IsPaidFlag,
+                    LastUpdateDate = a.LastUpdateDate,
+                    IsActiveFlag = a.IsActiveFlag,
+                }).ToList();
+            }
+            else
+            {
+                //CHIEN: show error
+            }
+
+            return View(viewModel);
         }
 
-        // GET: CleanerPayment/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int cleanerPaymentID)
         {
             return View();
         }
 
-        // GET: CleanerPayment/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: CleanerPayment/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CleanerPaymentCreateViewModel viewModel)
         {
             try
             {
@@ -44,15 +65,13 @@ namespace Web.Controllers
             }
         }
 
-        // GET: CleanerPayment/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Update(int cleanerPaymentID)
         {
             return View();
         }
 
-        // POST: CleanerPayment/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Update(CleanerPaymentUpdateViewModel viewModel)
         {
             try
             {

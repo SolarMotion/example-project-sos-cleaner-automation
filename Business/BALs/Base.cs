@@ -1,22 +1,24 @@
 ﻿using log4net;
-using Serilog;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Utility.CustomLogging;
 
 namespace Business.BALs
 {
     public class BaseBAL
     {
-        private readonly ILogger _logger;
-
-        public BaseBAL(ILogger<BaseBAL> logger)
+        public void Start(Object body)
         {
-            _logger = logger;
+            LogInfo("Business Request", body);
         }
-        public static readonly ILog LOGGER = LogManager.GetLogger("BusinessLogger");
 
+        public void End(Object body)
+        {
+            LogInfo("Business Response", body);
+        }
     }
 }
