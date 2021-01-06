@@ -8,11 +8,12 @@ namespace Business.Models
 {
     public class BaseRequest
     {
+        public int LastAccessID { get; set; }
     }
 
     public class BaseResponse
     {
         public bool IsSucess { get; set; }
-        public string ResponseMessage { get; set; }
+        public string ResponseMessage { get; set; } = "";
     }
 }

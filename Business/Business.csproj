@@ -71,10 +71,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BALs\Base.cs" />
-    <Compile Include="BALs\CleanerPayment.cs" />
-    <Compile Include="Models\Base.cs" />
-    <Compile Include="Models\CleanerPayment.cs" />
+    <Compile Include="BALs\BaseBAL.cs" />
+    <Compile Include="BALs\CleanerPaymentBAL.cs" />
+    <Compile Include="Helpers\Util.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\CleanerPaymentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

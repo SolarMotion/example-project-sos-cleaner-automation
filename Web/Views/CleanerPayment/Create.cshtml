@@ -1,15 +1,17 @@
 ﻿@using Web.Models;
-@model CleanerPaymentIndexViewModel
+@model CleanerPaymentCreateViewModel
 
 @{
-    ViewBag.Title = "Cleaner Payment Index";
+    ViewBag.Title = "Cleaner Payment Create";
 }
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Index", "CleanerPayment", FormMethod.Post))
+@using (Html.BeginForm("Create", "CleanerPayment", FormMethod.Post))
 {
-    @*<div class="row">
+    @Html.HiddenFor(a => a.CleanerPaymentID)
+
+    <div class="row">
         <div class="col-md-3">
             @Html.DisplayNameFor(a => a.ProofImage)
         </div>
@@ -22,12 +24,12 @@
         <div class="col-md-3">
             @Html.TextAreaFor(a => a.Remark)
         </div>
-    </div>*@
+    </div>
 
     <div class="row">
         <div class="col-md-12 right">
-            @*<input type="submit" value="Search" class="btn btn-default" />*@
-            <a class="btn btn-warning" href="@Url.Action("Create", "CleanerPayment")" role="button">New</a>
+            <input type="submit" value="Create" class="btn btn-default" />
+            <a class="btn btn-warning" href="@Url.Action("Index", "CleanerPayment")" role="button">Back</a>
         </div>
     </div>
 }

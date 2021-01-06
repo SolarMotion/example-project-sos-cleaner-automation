@@ -6,19 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Utility.CustomLogging;
+using Business.Models;
 
 namespace Business.BALs
 {
     public class BaseBAL
     {
-        public void Start(Object body)
-        {
-            LogInfo("Business Request", body);
-        }
+        public readonly DateTime DATE_TIME_NOW = DateTime.Now;
 
-        public void End(Object body)
-        {
-            LogInfo("Business Response", body);
-        }
     }
 }

@@ -33,17 +33,17 @@ namespace Business.Models
     public class CleanerPaymentDetailsRequest : BaseRequest
     {
         public int CleanerPaymentID { get; set; }
-        public bool IsActive { get; set; }
-        public string CreateDate { get; set; }
-        public string LastUpdateDate { get; set; }
-        public string Remark { get; set; }
-        public byte ProofImage { get; set; }
-        public byte ReceiptImage { get; set; }
     }
 
     public class CleanerPaymentDetailsResponse : BaseResponse
     {
         public int CleanerPaymentID { get; set; }
+        public bool IsActive { get; set; }
+        public string CreateDate { get; set; }
+        public string LastUpdateDate { get; set; }
+        public string Remark { get; set; }
+        public byte[] ProofImage { get; set; }
+        public byte[] ReceiptImage { get; set; }
     }
 
     #endregion
@@ -53,7 +53,7 @@ namespace Business.Models
     public class CleanerPaymentCreateRequest : BaseRequest
     {
         public string Remark { get; set; }
-        public byte ProofImage { get; set; }
+        public byte[] ProofImage { get; set; }
     }
 
     public class CleanerPaymentCreateResponse : BaseResponse
@@ -68,8 +68,9 @@ namespace Business.Models
     public class CleanerPaymentUpdateRequest : BaseRequest
     {
         public int CleanerPaymentID { get; set; }
+        public bool IsActive { get; set; }
         public string Remark { get; set; }
-        public byte ReceiptImage { get; set; }
+        public byte[] ReceiptImage { get; set; }
     }
 
     public class CleanerPaymentUpdateResponse : BaseResponse

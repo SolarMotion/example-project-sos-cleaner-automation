@@ -16,7 +16,6 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
-            LogInfo("Test wednesday");
             var viewModel = new CleanerPaymentIndexViewModel();
 
             var response = BAL.Index(new CleanerPaymentIndexRequest());
@@ -42,12 +41,31 @@ namespace Web.Controllers
 
         public ActionResult Details(int cleanerPaymentID)
         {
-            return View();
+            var viewModel = new CleanerPaymentDetailsViewModel();
+
+            var response = BAL.Details(new CleanerPaymentDetailsRequest() { CleanerPaymentID = cleanerPaymentID, });
+
+            if (response.IsSucess)
+            {
+                viewModel.CleanerPaymentID = response.CleanerPaymentID;
+                viewModel.CreateDate = response.CreateDate;
+                viewModel.LastUpdateDate = response.LastUpdateDate;
+                viewModel.ProofImage = response.ProofImage;
+                viewModel.ReceiptImage = response.ReceiptImage;
+                viewModel.IsActive = response.IsActive;
+                viewModel.Remark = response.Remark;
+            }
+            else
+            {
+                //CHIEN: show error
+            }
+
+            return View(viewModel);
         }
 
         public ActionResult Create()
         {
-            return View();
+            return View(new CleanerPaymentCreateViewModel());
         }
 
         [HttpPost]

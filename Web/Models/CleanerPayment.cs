@@ -29,9 +29,11 @@ namespace Web.Models
     {
         public int CleanerPaymentID { get; set; }
         public string Remark { get; set; }
-        public byte ProffImage { get; set; }
-        public byte ReceiptImage { get; set; }
+        public byte[] ProofImage { get; set; }
+        public byte[] ReceiptImage { get; set; }
         public bool IsActive { get; set; }
+        public string CreateDate { get; set; }
+        public string LastUpdateDate { get; set; }
     }
 
     #endregion

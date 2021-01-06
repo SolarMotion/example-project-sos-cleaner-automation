@@ -37,9 +37,9 @@ namespace Utility
             _logger.Information(text + " {@Body}", body);
         }
 
-        public static void LogError(string error)
+        public static void LogError(Exception ex)
         {
-            _logger.Error(error);
+            _logger.Error(ex.ToString());
         }
     }
 

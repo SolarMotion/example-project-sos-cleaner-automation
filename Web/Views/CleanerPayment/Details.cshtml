@@ -1,0 +1,66 @@
+﻿@using Web.Models;
+@model CleanerPaymentDetailsViewModel
+
+@{
+    ViewBag.Title = "Cleaner Payment Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Update", "CleanerPayment", FormMethod.Post))
+{
+    @Html.HiddenFor(a => a.CleanerPaymentID)
+
+    <div class="row">
+        <div class="col-md-3">
+            @Html.DisplayNameFor(a => a.ProofImage)
+        </div>
+        <div class="col-md-3">
+            @Html.TextAreaFor(a => a.Remark)
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayNameFor(a => a.IsActive)
+        </div>
+        <div class="col-md-3">
+            @Html.EditorFor(a => a.IsActive)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            @Html.DisplayNameFor(a => a.Remark)
+        </div>
+        <div class="col-md-3">
+            @Html.TextAreaFor(a => a.Remark)
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayNameFor(a => a.IsActive)
+        </div>
+        <div class="col-md-3">
+            @Html.EditorFor(a => a.IsActive)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            @Html.DisplayNameFor(a => a.CreateDate)
+        </div>
+        <div class="col-md-3">
+            @Html.EditorFor(a => a.CreateDate)
+        </div>
+        <div class="col-md-3">
+            @Html.DisplayNameFor(a => a.LastUpdateDate)
+        </div>
+        <div class="col-md-3">
+            @Html.EditorFor(a => a.LastUpdateDate)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 right">
+            <input type="submit" value="Update" class="btn btn-default" />
+            <a class="btn btn-warning" href="@Url.Action("Index", "CleanerPayment")" role="button">Back</a>
+        </div>
+    </div>
+}
+
