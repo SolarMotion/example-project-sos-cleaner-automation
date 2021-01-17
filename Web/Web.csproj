@@ -259,7 +259,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Properties\PublishProfiles\Development - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\SosCleanerWebDev - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -313,6 +313,9 @@
     <Content Include="Views\CleanerPayment\Details.cshtml" />
     <Content Include="Views\CleanerPayment\Create.cshtml" />
     <None Include="Web.Development - Web Deploy.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.SosCleanerWebDev - Web Deploy.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
