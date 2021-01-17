@@ -1,0 +1,33 @@
+﻿@{
+    string successMsg = (TempData["SuccessMsg"] ?? "").ToString();
+    string errorMsg = (TempData["ErrorMsg"] ?? "").ToString();
+    string warningMsg = (TempData["WarningMsg"] ?? "").ToString();
+}
+
+@if (!successMsg.IsEmpty())
+{
+    <div id="infoAlert">
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <h5>@successMsg</h5>
+        </div>
+    </div>
+}
+else if (!errorMsg.IsEmpty())
+{
+    <div id="infoAlert">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <h5>@errorMsg</h5>
+        </div>
+    </div>
+}
+else if (!warningMsg.IsEmpty())
+{
+    <div id="infoAlert">
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <h5>@warningMsg</h5>
+        </div>
+    </div>
+}

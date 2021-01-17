@@ -7,6 +7,7 @@ using static Utility.CustomLogging;
 using Business.Models;
 using Business.BALs;
 using Web.Models;
+using static Web.Helpers.Util;
 
 namespace Web.Controllers
 {
@@ -19,6 +20,8 @@ namespace Web.Controllers
             var viewModel = new CleanerPaymentIndexViewModel();
 
             var response = BAL.Index(new CleanerPaymentIndexRequest());
+
+            CreateWarningMsg(this, "AAAAAAA");
 
             if (response.IsSucess)
             {
