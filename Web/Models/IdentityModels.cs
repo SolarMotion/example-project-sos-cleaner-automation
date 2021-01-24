@@ -21,7 +21,7 @@ namespace Web.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DatabaseEntities", throwIfV1Schema: false)
+            : base("IdentityEntities", throwIfV1Schema: false)
         {
         }
 

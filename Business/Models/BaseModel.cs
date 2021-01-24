@@ -14,6 +14,6 @@ namespace Business.Models
     public class BaseResponse
     {
         public bool IsSucess { get; set; }
-        public string ResponseMessage { get; set; } = "";
+        public string ResponseMessage { get; set; } = "Invalid result. Please contact administrator.";
     }
 }

@@ -42,6 +42,7 @@ namespace Web.Models
 
     public class CleanerPaymentCreateViewModel : CleanerPaymentDetailsViewModel
     {
+        public HttpPostedFileBase ImageUpload { get; set; }
     }
 
     #endregion

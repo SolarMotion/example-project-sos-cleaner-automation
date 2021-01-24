@@ -313,9 +313,6 @@
     <Content Include="Views\CleanerPayment\Details.cshtml" />
     <Content Include="Views\CleanerPayment\Create.cshtml" />
     <Content Include="Views\Shared\_Info.cshtml" />
-    <None Include="Web.Development - Web Deploy.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
     <None Include="Web.SosCleanerWebDev - Web Deploy.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

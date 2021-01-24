@@ -20,6 +20,11 @@ namespace Business.Helpers
             LogInfo("Business Response", body);
         }
 
+        public static T ConstructFailResponse<T>(this T target) where T : BaseResponse
+        {
+            return target;
+        }
+
         public static T ConstructFailResponse<T>(this T target, string message) where T : BaseResponse
         {
             target.ResponseMessage = message;

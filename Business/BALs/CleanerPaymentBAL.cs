@@ -23,14 +23,24 @@ namespace Business.BALs
             {
                 using (var db = new DatabaseEntities())
                 {
-                    var trnCleanerPaymentProof = db.trnCleanerPaymentProofs.OrderByDescending(a => a.ID).Take(500).ToList();
+                    var trnCleanerPaymentProof = db.trnCleanerPaymentProofs.Select(a => new
+                    {
+                        a.ID,
+                        a.IsActive,
+                        a.CreateDT,
+                        a.LastUpdateDT
+                    }).OrderByDescending(a => a.ID).Take(500).ToList();
 
                     response.Payments = trnCleanerPaymentProof.Select(a => new CleanerPaymentIndexItem()
                     {
                         IsActiveFlag = a.IsActive.ToBoolFlag(),
                         CleanerPaymentID = a.ID,
                         CreateDate = a.CreateDT.ToDateTimeString(),
-                        IsPaidFlag = a.ProofImage.IsEmpty().ToBoolFlag(),
+
+
+                        //CHIEN: add a new date as ReceiptDT
+                        //IsPaidFlag = a.ProofImage.IsEmpty().ToBoolFlag(),
+
                         LastUpdateDate = a.LastUpdateDT.ToDateTimeString(),
                     }).ToList();
                 }
@@ -111,11 +121,14 @@ namespace Business.BALs
                     };
                     db.trnCleanerPaymentProofs.Add(trnCleanerPaymentProof);
                     db.SaveChanges();
+
+                    response.CleanerPaymentID = trnCleanerPaymentProof.ID;
                 }
             }
             catch (Exception ex)
             {
                 LogError(ex);
+                return response.ConstructFailResponse();
             }
             finally
             {

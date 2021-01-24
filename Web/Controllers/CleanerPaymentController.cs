@@ -8,6 +8,7 @@ using Business.Models;
 using Business.BALs;
 using Web.Models;
 using static Web.Helpers.Util;
+using System.IO;
 
 namespace Web.Controllers
 {
@@ -19,25 +20,25 @@ namespace Web.Controllers
         {
             var viewModel = new CleanerPaymentIndexViewModel();
 
-            var response = BAL.Index(new CleanerPaymentIndexRequest());
+            //var response = BAL.Index(new CleanerPaymentIndexRequest());
 
-            CreateWarningMsg(this, "AAAAAAA");
+            //if (response.IsSucess)
+            //{
+            //    viewModel.Payments = response.Payments.Select(a => new Models.CleanerPaymentIndexItem()
+            //    {
+            //        CleanerPaymentID = a.CleanerPaymentID,
+            //        CreateDate = a.CreateDate,
+            //        IsPaidFlag = a.IsPaidFlag,
+            //        LastUpdateDate = a.LastUpdateDate,
+            //        IsActiveFlag = a.IsActiveFlag,
+            //    }).ToList();
+            //}
+            //else
+            //{
+            //    CreateWarningMsg(this, "AAAAAAA");
 
-            if (response.IsSucess)
-            {
-                viewModel.Payments = response.Payments.Select(a => new Models.CleanerPaymentIndexItem()
-                {
-                    CleanerPaymentID = a.CleanerPaymentID,
-                    CreateDate = a.CreateDate,
-                    IsPaidFlag = a.IsPaidFlag,
-                    LastUpdateDate = a.LastUpdateDate,
-                    IsActiveFlag = a.IsActiveFlag,
-                }).ToList();
-            }
-            else
-            {
-                //CHIEN: show error
-            }
+            //    //CHIEN: show error
+            //}
 
             return View(viewModel);
         }
@@ -76,15 +77,40 @@ namespace Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                var response = BAL.Create(new CleanerPaymentCreateRequest()
+                {
+                    ProofImage = ConvertToBytes(viewModel.ImageUpload),
+                    Remark = viewModel.Remark,
+                    LastAccessID = SessionLastAccessID,
+                });
 
-                return RedirectToAction("Index");
+                if (response.IsSucess)
+                    return RedirectToAction("Details", new { cleanerPaymentID = response.CleanerPaymentID });
+
+                CreateWarningMsg(this, response.ResponseMessage);
+                return View(viewModel);
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                //CHIEN: need logging
+                //CHIEN: display generic error message when exception
+                CreateWarningMsg(this, ex.ToString());
+                return View(viewModel);
             }
         }
+
+        private static byte[] ConvertToBytes(HttpPostedFileBase file)
+        {
+            int fileSizeInBytes = file.ContentLength;
+            byte[] data = null;
+            using (var br = new BinaryReader(file.InputStream))
+            {
+                data = br.ReadBytes(fileSizeInBytes);
+            }
+
+            return data;
+        }
+
 
         public ActionResult Update(int cleanerPaymentID)
         {
